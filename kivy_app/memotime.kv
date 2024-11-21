@@ -1,0 +1,75 @@
+<NoteApp>:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+
+    Label:
+        text: 'MemoTime Notes'
+        font_size: 24
+        size_hint_y: None
+        height: 50
+
+    TextInput:
+        id: title_input
+        hint_text: 'Title'
+        size_hint_y: None
+        height: 40
+
+    TextInput:
+        id: content_input
+        hint_text: 'Content'
+        multiline: True
+        size_hint_y: None
+        height: 80
+
+    Button:
+        text: 'Add Note'
+        size_hint_y: None
+        height: 50
+        on_press: root.add_note()
+
+    ScrollView:
+        GridLayout:
+            id: notes_layout
+            cols: 1
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
+
+<NoteItem>:
+    orientation: 'vertical'
+    padding: 5
+    spacing: 5
+    size_hint_y: None
+    height: 120
+    canvas.before:
+        Color:
+            rgba: 0.9, 0.9, 0.9, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        id: title_label
+        text: root.note_title
+        size_hint_y: None
+        height: 30
+        font_size: 18
+
+    Label:
+        id: content_label
+        text: root.note_content
+        size_hint_y: None
+        height: 30
+
+    BoxLayout:
+        size_hint_y: None
+        height: 40
+
+        Button:
+            text: 'Update'
+            on_press: root.update_note()
+
+        Button:
+            text: 'Delete'
+            on_press: root.delete_note()
